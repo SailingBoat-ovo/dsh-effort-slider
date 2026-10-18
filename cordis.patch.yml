@@ -1,0 +1,6 @@
+# dsh-effort-slider bundle patch: adds the composer model-seat shadow with the
+# smooth reasoning-effort slider (it wins the conversation.input.model slot at a
+# lower priority; the stock ui-model-selection seat stays as the fallback).
+- insert:
+    - id: ui-effort-slider
+      name: 'dsh-effort-slider'

@@ -1,0 +1,43 @@
+{
+    "name":  "dsh-effort-slider",
+    "version":  "0.1.0",
+    "description":  "DSH web client plugin: replaces the composer\u0027s reasoning-effort (思考强度) picker list with a smooth Codex-style slider.",
+    "type":  "module",
+    "main":  "lib/index.js",
+    "exports":  {
+                    ".":  "./lib/index.js",
+                    "./client":  "./lib/client.js",
+                    "./package.json":  "./package.json"
+                },
+    "dsh":  {
+                "client":  {
+                               "platform":  "web",
+                               "inject":  [
+                                              "@deepseek-ai/dsh-client-locale",
+                                              "@deepseek-ai/dsh-client-ui-model-selection",
+                                              "@deepseek-ai/dsh-client-ui-renderer"
+                                          ]
+                           },
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           }
+            },
+    "files":  [
+                  "lib/index.js",
+                  "lib/client.js",
+                  "cordis.patch.yml"
+              ],
+    "license":  "MIT",
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/SailingBoat-ovo/dsh-effort-slider.git"
+                   },
+    "homepage":  "https://github.com/SailingBoat-ovo/dsh-effort-slider",
+    "devDependencies":  {
+                            "react":  "^18.3.1",
+                            "react-dom":  "^18.3.1"
+                        },
+    "scripts":  {
+                    "test":  "node tests/compat-021.mjs"
+                }
+}
