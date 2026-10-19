@@ -78,7 +78,7 @@ Asserts the registration surface, the `remote.session` declaration, that the inj
 
 ### License
 
-MIT — see [LICENSE](LICENSE). Third-party notes in [NOTICE.md](NOTICE.md).
+GPL-3.0-or-later — see [LICENSE](LICENSE) for the full text. Third-party notes in [NOTICE.md](NOTICE.md).
 
 ---
 
@@ -152,4 +152,4 @@ npm test
 
 ### 许可
 
-MIT，见 [LICENSE](LICENSE)；第三方说明见 [NOTICE.md](NOTICE.md)。
+GPL-3.0-or-later，完整文本见 [LICENSE](LICENSE)；第三方说明见 [NOTICE.md](NOTICE.md)。
