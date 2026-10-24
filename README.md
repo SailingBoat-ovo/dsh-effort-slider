@@ -71,7 +71,7 @@ dsh plugin --profile web add ./dsh-effort-slider
 ```sh
 node tests/build-preview.mjs          # writes .preview/preview.html
 node tests/measure-preview.mjs        # optional: prints geometry, fails on ragged layout
-# then screenshot .preview/preview.html at 1180x1000, device scale 2
+# then screenshot .preview/preview.html at 1180x760, device scale 2
 ```
 
 So if a colour or spacing value changes, the README image can be regenerated rather than silently going stale.
@@ -171,7 +171,7 @@ dsh plugin --profile web add ./dsh-effort-slider
 ```sh
 node tests/build-preview.mjs          # 生成 .preview/preview.html
 node tests/measure-preview.mjs        # 可选：打印几何信息，布局参差时报错
-# 再以 1180x1000、device scale 2 截图
+# 再以 1180x760、device scale 2 截图
 ```
 
 所以改了颜色或间距，可以直接重生成配图，而不是让它悄悄过期。

@@ -4,7 +4,7 @@
 //
 //   node tests/build-preview.mjs lib/client.js .preview
 //   <chrome/edge> --headless=new --hide-scrollbars --force-device-scale-factor=2 \
-//       --window-size=1180,1000 --screenshot=preview.png file:///$PWD/.preview/preview.html
+//       --window-size=1180,760 --screenshot=preview.png file:///$PWD/.preview/preview.html
 //
 // Colours come from the plugin's own PALETTE, so the screenshot cannot drift
 // from what ships; class names are read from the component's `C` map for the
@@ -202,7 +202,7 @@ const html = `<!doctype html>
     color: #e8e9ec;
     padding: 40px 44px 34px;
   }
-  .stage { display: flex; gap: 26px; align-items: flex-start; flex-wrap: wrap; }
+  .stage { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
   .col { display: flex; flex-direction: column; gap: 14px; }
   .caption { color: #8b8f99; font-size: 12px; letter-spacing: .02em; margin: 0 0 2px 2px; }
   .composer {
