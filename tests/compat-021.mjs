@@ -1,6 +1,10 @@
 import { createRequire } from "node:module";
 import { readFileSync } from "node:fs";
-const require = createRequire("C:/Users/FANCHUAN/AppData/Local/Temp/dsh-plugin-test/package.json");
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+const here = dirname(fileURLToPath(import.meta.url));
+const clientPath = join(here, "..", "lib", "client.js");
+const require = createRequire(import.meta.url);
 const react = require("react");
 const jsx = require("react/jsx-runtime");
 
@@ -11,7 +15,7 @@ const doc = {
 };
 const win = { __ModuleLoader__: null, document: doc };
 win.__ModuleLoader__ = { load: (h) => { win.__handoff = h; } };
-const code = readFileSync("C:/Users/FANCHUAN/.dsh/plugins/dsh-effort-slider/lib/client.js", "utf8");
+const code = readFileSync(clientPath, "utf8");
 new Function("window", code)(win);
 const mod = win.__handoff.factory((s) => {
   if (s === "react") return react;
@@ -80,7 +84,14 @@ const markup2 = require("react-dom/server").renderToStaticMarkup(react.createEle
 }));
 check("trigger shows the selected model name", markup2.includes("DeepSeek V4"));
 check("trigger shows the selected effort label", markup2.includes("High"));
-check("model row styles are shipped", markup2.includes("esl_trigger"));
+check("trigger reads as a single `Model · Effort` label", markup2.includes("DeepSeek V4") && /DeepSeek V4<\/span>/.test(markup2));
+
+const source = readFileSync(clientPath, "utf8");
+check("effort pane ships the model pill styles",
+  source.includes(".esl_modelPill{") && source.includes(".esl_modelDot{") && source.includes(".esl_modelRow{"));
+check("effort pane renders the model pill",
+  source.includes('className: C.modelPill') && source.includes('className: C.modelRow'));
+check("effort value label tints with the slider ramp", source.includes('style: { color: labelColorAt(ratio) }'));
 
 console.log(failed === 0 ? "EFFORT-SLIDER CHECK PASSED" : `${failed} CHECKS FAILED`);
 if (failed > 0) process.exit(1);
