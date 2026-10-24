@@ -64,6 +64,18 @@ dsh plugin --profile web add ./dsh-effort-slider
 
 **Restart DSH afterwards** (restart the app on desktop).
 
+### Screenshot
+
+`preview.png` is generated, not hand-drawn — it is a headless-browser screenshot of a page built from this plugin's own CSS and palette:
+
+```sh
+node tests/build-preview.mjs          # writes .preview/preview.html
+node tests/measure-preview.mjs        # optional: prints geometry, fails on ragged layout
+# then screenshot .preview/preview.html at 1180x1000, device scale 2
+```
+
+So if a colour or spacing value changes, the README image can be regenerated rather than silently going stale.
+
 ### Compatibility
 
 Works on DSH `0.1.x` (web) and `0.2.1+` (desktop).
@@ -151,6 +163,18 @@ dsh plugin --profile web add ./dsh-effort-slider
 ```
 
 **装完重启 DSH**（桌面版重启应用）。
+
+### 配图
+
+`preview.png` 不是手画的，而是用插件自己的 CSS 与配色生成页面后，用无头浏览器截的图：
+
+```sh
+node tests/build-preview.mjs          # 生成 .preview/preview.html
+node tests/measure-preview.mjs        # 可选：打印几何信息，布局参差时报错
+# 再以 1180x1000、device scale 2 截图
+```
+
+所以改了颜色或间距，可以直接重生成配图，而不是让它悄悄过期。
 
 ### 兼容性
 
