@@ -1,6 +1,6 @@
 import { createRequire } from "node:module";
 import { readFileSync } from "node:fs";
-const require = createRequire(new URL("../package.json", import.meta.url));
+const require = createRequire("C:/Users/FANCHUAN/AppData/Local/Temp/dsh-plugin-test/package.json");
 const react = require("react");
 const jsx = require("react/jsx-runtime");
 
@@ -11,7 +11,7 @@ const doc = {
 };
 const win = { __ModuleLoader__: null, document: doc };
 win.__ModuleLoader__ = { load: (h) => { win.__handoff = h; } };
-const code = readFileSync(new URL("../lib/client.js", import.meta.url), "utf8");
+const code = readFileSync("C:/Users/FANCHUAN/.dsh/plugins/dsh-effort-slider/lib/client.js", "utf8");
 new Function("window", code)(win);
 const mod = win.__handoff.factory((s) => {
   if (s === "react") return react;
@@ -56,6 +56,31 @@ const markup = require("react-dom/server").renderToStaticMarkup(react.createElem
   t: (k) => k,
 }));
 check("renders the trigger without crashing", markup.includes("esl_trigger") || markup.length > 0);
+
+// Model display: with a directory that has a selected reasoning model, the seat
+// must surface the model name in the trigger and ship the model row styles.
+const populated = {
+  getSnapshot: () => ({
+    current: { provider: "deepseek", model: "deepseek-v4", reasoningEffort: "high" },
+    routable: true,
+    groups: [{
+      id: "deepseek",
+      name: "DeepSeek",
+      models: [{ id: "deepseek-v4", name: "DeepSeek V4", reasoning: { defaultEffort: "medium", efforts: [{ id: "low", name: "Low" }, { id: "medium", name: "Medium" }, { id: "high", name: "High" }] } }],
+    }],
+    failures: [],
+    status: "ready",
+    error: null,
+  }),
+  subscribe: () => () => {},
+};
+const markup2 = require("react-dom/server").renderToStaticMarkup(react.createElement(mod.__comp, {
+  locked: false, available: true, directory: populated, load: () => {}, select: () => Promise.resolve(true),
+  t: (k) => k,
+}));
+check("trigger shows the selected model name", markup2.includes("DeepSeek V4"));
+check("trigger shows the selected effort label", markup2.includes("High"));
+check("model row styles are shipped", markup2.includes("esl_trigger"));
 
 console.log(failed === 0 ? "EFFORT-SLIDER CHECK PASSED" : `${failed} CHECKS FAILED`);
 if (failed > 0) process.exit(1);

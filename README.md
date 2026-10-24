@@ -28,6 +28,16 @@ Dragging does not merely lengthen a bar; the fill **heats up** as the effort ris
 
 The palette follows the colour scheme of OpenAI Codex's reasoning-effort slider (`#4d93f8` / `#9333ea` / `#c084fc`, mixing across thirds of the track). Colour values only — no Codex code is included.
 
+### Model display
+
+The model you are driving is always visible, in three places:
+
+- **Trigger** — `DeepSeek V4 · High`: model name first, current effort label after it, so you never open the menu to remember which model the slider is attached to.
+- **Menu root** — a `Model` row whose value is the live model name, above the `Effort` row.
+- **Effort pane** — a pill at the top carrying the model name, with the provider name beside it, so the slider reads as *"effort for this model"* rather than a detached control. The live level label in that pane is tinted with the same blue → violet ramp as the track.
+
+The name comes straight from the shared `modelDirectories` snapshot (`state.current` → matching model entry), so switching models anywhere in the UI updates the slider immediately — no extra fetch, no cached copy.
+
 ### Interaction
 
 - 1:1 pointer dragging; on release the knob snaps to the nearest level and saves.
@@ -74,7 +84,7 @@ npm install
 npm test
 ```
 
-Asserts the registration surface, the `remote.session` declaration, that the inject face resolves, that the component renders, and that **the three fill colours really progress with position** (`#4D93F8` → `#7063F1` → `#BF82FB`).
+Asserts the registration surface, the `remote.session` declaration, that the inject face resolves, that the component renders, that the trigger surfaces the selected model name and effort, and that **the three fill colours really progress with position** (`#4D93F8` → `#7063F1` → `#BF82FB`).
 
 ### License
 
@@ -101,6 +111,16 @@ GPL-3.0-or-later — see [LICENSE](LICENSE) for the full text. Third-party notes
 - 最高档刻意用**亮紫而非深紫**：深紫在深色面板上几乎看不见。
 
 配色参考了 OpenAI Codex 推理强度滑条（`#4d93f8` / `#9333ea` / `#c084fc`，按轨道前中后三段混合），仅取色值，不含 Codex 代码。
+
+### 模型显示
+
+当前正在调的模型始终可见，共三处：
+
+- **触发按钮** —— `DeepSeek V4 · High`：模型名在前、当前档位在后，不用展开菜单就知道滑条挂在哪个模型上；
+- **菜单首页** —— `模型` 一行的值就是实时模型名，位于 `思考强度` 之上；
+- **强度面板** —— 顶部一枚药丸标签显示模型名，旁边是 provider 名称，让这根滑条读起来是"这个模型的思考强度"，而不是一个脱离上下文的控件；面板里的档位文字同样跟着蓝 → 紫的渐变取色。
+
+模型名直接取自共享的 `modelDirectories` 快照（`state.current` → 匹配的模型项），所以在界面任何地方切换模型，滑条都会立即跟着变——不额外请求、不缓存副本。
 
 ### 交互
 
@@ -148,7 +168,7 @@ npm install
 npm test
 ```
 
-覆盖注册面、`remote.session` 声明、注入面可解析、组件渲染，以及**三档填充颜色确实随位置递进**（`#4D93F8` → `#7063F1` → `#BF82FB`）。
+覆盖注册面、`remote.session` 声明、注入面可解析、组件渲染、触发按钮显示所选模型名与档位，以及**三档填充颜色确实随位置递进**（`#4D93F8` → `#7063F1` → `#BF82FB`）。
 
 ### 许可
 

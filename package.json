@@ -1,7 +1,7 @@
 {
   "name": "dsh-effort-slider",
-  "version": "0.1.0",
-  "description": "DSH web client plugin: replaces the composer's reasoning-effort (思考强度) picker list with a smooth Codex-style slider.",
+  "version": "0.2.0",
+  "description": "DSH web client plugin: replaces the composer's reasoning-effort (思考强度) picker with a smooth Codex-style colour slider and shows the active model in the trigger, menu row and effort pane.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
