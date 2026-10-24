@@ -2,7 +2,7 @@
 
 [English](#english) · [中文](#中文)
 
-A **Codex-style reasoning-effort slider** for **DeepSeek Harness (DSH)**: it replaces the composer's discrete effort picker with one continuous, **colour-shifting** track — blue at the cool end, violet in the middle, bright lavender at the top.
+A **Codex-style reasoning-effort slider** for **DeepSeek Harness (DSH)**: it replaces the composer's discrete effort picker with one continuous, **colour-shifting** track — blue at the cool end, violet in the middle, bright lavender at the top. The model the slider is attached to is always on screen: `DeepSeek V4 · High` in the trigger, the live name in the menu, and a model pill above the track.
 
 ![preview](preview.png)
 
@@ -86,6 +86,8 @@ npm test
 
 Asserts the registration surface, the `remote.session` declaration, that the inject face resolves, that the component renders, that the trigger surfaces the selected model name and effort, and that **the three fill colours really progress with position** (`#4D93F8` → `#7063F1` → `#BF82FB`).
 
+`tests/ui-render.mjs` goes further: it mounts the seat with `react-test-renderer`, clicks the trigger, opens the **Model** and **Effort** rows, and asserts the model name reaches the trigger, the menu row, and the effort pane's model pill (plus the provider hint, the status dot, and its position above the level header).
+
 ### License
 
 GPL-3.0-or-later — see [LICENSE](LICENSE) for the full text. Third-party notes in [NOTICE.md](NOTICE.md).
@@ -93,6 +95,8 @@ GPL-3.0-or-later — see [LICENSE](LICENSE) for the full text. Third-party notes
 ---
 
 ## 中文
+
+**DeepSeek Harness（DSH）的 Codex 风格思考强度滑条**：把输入框旁那个一档一档点的强度选择，换成一条连续、**会变色**的轨道——冷端蓝、中段紫罗兰、顶端亮紫。滑条正在调哪个模型始终可见：触发按钮上的 `DeepSeek V4 · High`、菜单里的实时模型名，以及轨道上方的模型药丸。
 
 ### 配色
 
@@ -169,6 +173,8 @@ npm test
 ```
 
 覆盖注册面、`remote.session` 声明、注入面可解析、组件渲染、触发按钮显示所选模型名与档位，以及**三档填充颜色确实随位置递进**（`#4D93F8` → `#7063F1` → `#BF82FB`）。
+
+`tests/ui-render.mjs` 更进一步：用 `react-test-renderer` 真实挂载座位，点开触发按钮、进入 **模型** 与 **思考强度**，断言模型名确实出现在触发按钮、菜单行以及强度面板的模型药丸上（另含 provider 提示、状态圆点及其位于档位标题之上的顺序）。
 
 ### 许可
 
